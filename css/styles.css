@@ -1,0 +1,145 @@
+/* ===========================================
+   styles.css — Базовые стили проекта
+   Tailwind utilities — в HTML/JS разметке.
+   Здесь: CSS-переменные, анимации, утилиты.
+   =========================================== */
+
+/* ── Переменные темы ─────────────────────────
+   По умолчанию — светлая тема.
+   При подключении Notibot Bridge эти значения
+   перезаписываются из app.colors автоматически.
+   ────────────────────────────────────────── */
+:root {
+  --color-bg:      #0a0a0a;
+  --color-text:    #f5f5f4;
+  --color-muted:   #a8a29e;
+  --color-accent:  #d97706; /* Золотой / Янтарный */
+  --color-surface: rgba(28, 25, 23, 0.75);
+  --color-border:  rgba(217, 119, 6, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:      #0a0a0a;
+    --color-text:    #f5f5f4;
+    --color-muted:   #a8a29e;
+    --color-accent:  #d97706;
+    --color-surface: rgba(28, 25, 23, 0.75);
+    --color-border:  rgba(217, 119, 6, 0.25);
+  }
+}
+
+/* ── Базовые стили ───────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Safe Areas (iOS) ────────────────────── */
+.safe-top    { padding-top:    env(safe-area-inset-top,    0px); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* ── Анимации ────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1;   }
+  50%       { opacity: 0.5; }
+}
+
+.fade-in   { animation: fadeIn  0.35s ease forwards; }
+.slide-up  { animation: slideUp 0.4s  ease forwards; }
+.pulse     { animation: pulse   1.5s  ease infinite; }
+
+/* ── Эффект нажатия на кнопки ────────────── */
+.btn-press {
+  transition: transform 0.1s ease, opacity 0.1s ease;
+  cursor: pointer;
+}
+.btn-press:active {
+  transform: scale(0.96);
+  opacity: 0.8;
+}
+
+/* ── Переиспользуемые UI-блоки ───────────── */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 14px 24px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+.btn-primary:active {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 16px 0;
+}
+
+/* ── Загрузочный экран Notibot ───────────── */
+.loader-screen {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; justify-content: center;
+  background-color: var(--color-bg, #0a0a0a); z-index: 9999;
+}
+.loader-spinner {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 3px solid rgba(217,119,6,0.15);
+  border-top-color: var(--color-accent);
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Золотые градиенты и эффекты ─────────── */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #b45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fbbf24;
+}
+.gold-glow {
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.15);
+  border-color: rgba(217, 119, 6, 0.4) !important;
+}
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #fef08a 0%, #d97706 100%) !important;
+  color: #0a0a0a !important;
+}
+
+
