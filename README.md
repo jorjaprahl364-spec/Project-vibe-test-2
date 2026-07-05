@@ -81,3 +81,4 @@ vibe-html-kit/
 | **HTML Kit** 👈 ты здесь | Новичок | HTML + Tailwind + Vanilla JS |
 | Vite Kit | Средний | React + Vite |
 | Monorepo Kit | Продвинутый | React + Node.js + SQLite |
+<!-- redeploy -->
